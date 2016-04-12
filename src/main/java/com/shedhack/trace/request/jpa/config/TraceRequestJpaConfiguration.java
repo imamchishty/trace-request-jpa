@@ -1,10 +1,10 @@
 package com.shedhack.trace.request.jpa.config;
 
+import com.shedhack.trace.request.jpa.service.JpaTraceRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -73,6 +73,11 @@ public class TraceRequestJpaConfiguration {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(traceRequestEntityManager().getObject());
         return transactionManager;
+    }
+
+    @Bean
+    public JpaTraceRequestService jpaTraceRequestService() {
+        return new JpaTraceRequestService();
     }
 
 }
