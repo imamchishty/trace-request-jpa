@@ -7,6 +7,7 @@ import com.shedhack.trace.request.jpa.domain.RequestUtilities;
 import com.shedhack.trace.request.jpa.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,21 +30,28 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
-    public void persist(RequestModel requestModel) {
+    @Transactional
+    public RequestModel persist(RequestModel requestModel) {
 
         // check if the type is already a domain domain (i.e. an entity)
         // If not then convert.
 
         if(RequestUtilities.isRequestEntity(requestModel)) {
-            repo.save((Request) requestModel);
+            return saveOrUpdate((Request) requestModel);
         }
 
-        repo.save(RequestUtilities.mapFromModelToEntity(requestModel));
+        return saveOrUpdate(RequestUtilities.mapFromModelToEntity(requestModel));
+    }
+
+    private RequestModel saveOrUpdate(Request model) {
+        repo.save(model);
+        return model;
     }
 
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public Request findByRequestId(String s) {
         return repo.findOne(s);
     }
@@ -51,6 +59,7 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public List<? extends Request> findByApplicationId(String s) {
         return repo.findByApplicationId(s);
     }
@@ -58,6 +67,7 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public List<? extends Request> findByGroupId(String s) {
         return repo.findByGroupId(s);
     }
@@ -65,6 +75,7 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public List<? extends Request> findByCallerId(String s) {
         return repo.findByCallerId(s);
     }
@@ -72,6 +83,7 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public List<? extends Request> findByPath(String s) {
         return repo.findByPath(s);
     }
@@ -79,6 +91,7 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public List<? extends Request> findBySessionId(String s) {
         return repo.findBySessionId(s);
     }
@@ -86,6 +99,7 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public List<? extends Request> findByHttpMethod(String s) {
         return repo.findByHttpMethod(s);
     }
@@ -93,6 +107,7 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public List<? extends Request> findByClientAddress(String s) {
         return repo.findByClientAddress(s);
     }
@@ -100,6 +115,7 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public List<? extends Request> findByHostAddress(String s) {
         return repo.findByHostAddress(s);
     }
@@ -107,6 +123,7 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public List<? extends Request> findByHeaders(String s) {
         return repo.findByHeaders(s);
     }
@@ -114,6 +131,7 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public List<? extends Request> findByExceptionId(String s) {
         return repo.findByExceptionId(s);
     }
@@ -121,6 +139,7 @@ public class JpaTraceRequestService implements TraceRequestService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public List<? extends Request> findByStatus(String s) {
         return repo.findByStatus(s);
     }
