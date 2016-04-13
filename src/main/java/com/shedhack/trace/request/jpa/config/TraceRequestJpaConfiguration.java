@@ -45,7 +45,7 @@ public class TraceRequestJpaConfiguration {
     public LocalContainerEntityManagerFactoryBean traceRequestEntityManager() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(traceRequestDataSource());
-        em.setPackagesToScan(new String[] { "com.shedhack.trace.request.jpa.model" });
+        em.setPackagesToScan(new String[] { "com.shedhack.trace.request.jpa.domain" });
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

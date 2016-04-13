@@ -1,8 +1,7 @@
 package com.shedhack.trace.request.jpa.controller;
 
 import com.shedhack.trace.request.api.constant.Status;
-import com.shedhack.trace.request.api.model.RequestModel;
-import com.shedhack.trace.request.jpa.model.Request;
+import com.shedhack.trace.request.jpa.domain.Request;
 import com.shedhack.trace.request.jpa.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

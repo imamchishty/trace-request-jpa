@@ -13,6 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.basedir>${basedir}/../..</main.basedir>
         <spring-loaded.version>1.2.5.RELEASE</spring-loaded.version>
+        <spring-orm.version>4.2.5.RELEASE</spring-orm.version>
     </properties>
 
     <parent>
@@ -82,6 +83,7 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.4-1206-jdbc42</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- Spring -->
@@ -94,12 +96,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>4.2.5.RELEASE</version>
+            <version>${spring-orm.version}</version>
         </dependency>
 
         <!-- Test -->
@@ -107,7 +110,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -115,7 +118,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
 
         <!-- Test dependencies -->
 

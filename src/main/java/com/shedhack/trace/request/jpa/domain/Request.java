@@ -1,4 +1,4 @@
-package com.shedhack.trace.request.jpa.model;
+package com.shedhack.trace.request.jpa.domain;
 
 import com.shedhack.trace.request.api.constant.Status;
 import com.shedhack.trace.request.api.model.RequestModel;
@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  * <pre>
- *  Request model containing the following properties:
+ *  Request domain containing the following properties:
  *
  *  applicationId, requestId, groupId, callerId, path, sessionId, httpMethod,
  *  clientAddress, hostAddress, requestDateTime, http headers, status
@@ -284,5 +284,72 @@ public class Request implements RequestModel, Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Request request = (Request) o;
+
+        if (requestId != null ? !requestId.equals(request.requestId) : request.requestId != null) return false;
+        if (applicationId != null ? !applicationId.equals(request.applicationId) : request.applicationId != null)
+            return false;
+        if (groupId != null ? !groupId.equals(request.groupId) : request.groupId != null) return false;
+        if (callerId != null ? !callerId.equals(request.callerId) : request.callerId != null) return false;
+        if (path != null ? !path.equals(request.path) : request.path != null) return false;
+        if (sessionId != null ? !sessionId.equals(request.sessionId) : request.sessionId != null) return false;
+        if (httpMethod != null ? !httpMethod.equals(request.httpMethod) : request.httpMethod != null) return false;
+        if (clientAddress != null ? !clientAddress.equals(request.clientAddress) : request.clientAddress != null)
+            return false;
+        if (hostAddress != null ? !hostAddress.equals(request.hostAddress) : request.hostAddress != null) return false;
+        if (headers != null ? !headers.equals(request.headers) : request.headers != null) return false;
+        if (exceptionId != null ? !exceptionId.equals(request.exceptionId) : request.exceptionId != null) return false;
+        if (requestDateTime != null ? !requestDateTime.equals(request.requestDateTime) : request.requestDateTime != null)
+            return false;
+        if (responseDateTime != null ? !responseDateTime.equals(request.responseDateTime) : request.responseDateTime != null)
+            return false;
+        return status == request.status;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = requestId != null ? requestId.hashCode() : 0;
+        result = 31 * result + (applicationId != null ? applicationId.hashCode() : 0);
+        result = 31 * result + (groupId != null ? groupId.hashCode() : 0);
+        result = 31 * result + (callerId != null ? callerId.hashCode() : 0);
+        result = 31 * result + (path != null ? path.hashCode() : 0);
+        result = 31 * result + (sessionId != null ? sessionId.hashCode() : 0);
+        result = 31 * result + (httpMethod != null ? httpMethod.hashCode() : 0);
+        result = 31 * result + (clientAddress != null ? clientAddress.hashCode() : 0);
+        result = 31 * result + (hostAddress != null ? hostAddress.hashCode() : 0);
+        result = 31 * result + (headers != null ? headers.hashCode() : 0);
+        result = 31 * result + (exceptionId != null ? exceptionId.hashCode() : 0);
+        result = 31 * result + (requestDateTime != null ? requestDateTime.hashCode() : 0);
+        result = 31 * result + (responseDateTime != null ? responseDateTime.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "requestId='" + requestId + '\'' +
+                ", applicationId='" + applicationId + '\'' +
+                ", groupId='" + groupId + '\'' +
+                ", callerId='" + callerId + '\'' +
+                ", path='" + path + '\'' +
+                ", sessionId='" + sessionId + '\'' +
+                ", httpMethod='" + httpMethod + '\'' +
+                ", clientAddress='" + clientAddress + '\'' +
+                ", hostAddress='" + hostAddress + '\'' +
+                ", headers='" + headers + '\'' +
+                ", exceptionId='" + exceptionId + '\'' +
+                ", requestDateTime=" + requestDateTime +
+                ", responseDateTime=" + responseDateTime +
+                ", status=" + status +
+                '}';
     }
 }

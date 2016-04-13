@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
  * Test Application
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.shedhack.trace.request.jpa.model",
+@ComponentScan(basePackages = {"com.shedhack.trace.request.jpa.domain",
         "com.shedhack.trace.request.jpa.service", "com.shedhack.trace.request.jpa.repository",
         "com.shedhack.trace.request.jpa.controller"})
 public class Application {

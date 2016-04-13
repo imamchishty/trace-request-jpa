@@ -1,4 +1,4 @@
-package com.shedhack.trace.request.jpa.model;
+package com.shedhack.trace.request.jpa.domain;
 
 import com.shedhack.trace.request.api.constant.Status;
 import com.shedhack.trace.request.api.model.RequestModel;
