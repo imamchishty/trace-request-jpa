@@ -43,7 +43,8 @@ public class RequestUtilities {
                 .withClientAddress(model.getClientAddress())
                 .withPath(model.getPath())
                 .withHttpHeaders(model.getHeaders())
-                .withResponseDateTime(model.getResponseDateTime()).build();
+                .withResponseDateTime(model.getResponseDateTime())
+                .withHttpStatusCode(model.getHttpStatusCode()).build();
     }
 
 }

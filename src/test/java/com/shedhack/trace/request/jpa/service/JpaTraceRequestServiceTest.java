@@ -1,7 +1,6 @@
 package com.shedhack.trace.request.jpa.service;
 
-import com.shedhack.trace.request.api.constant.Status;
-import com.shedhack.trace.request.api.model.RequestModel;
+import com.shedhack.trace.request.api.service.TraceRequestService;
 import com.shedhack.trace.request.jpa.Application;
 import com.shedhack.trace.request.jpa.domain.Request;
 import com.shedhack.trace.request.jpa.domain.RequestHelper;
@@ -9,10 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -23,11 +20,10 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-@Profile({"dev"})
 public class JpaTraceRequestServiceTest {
 
     @Autowired
-    private JpaTraceRequestService service;
+    private TraceRequestService service;
 
     @Test
     public void should_persist_request() {
@@ -65,10 +61,10 @@ public class JpaTraceRequestServiceTest {
         // Act
         List<Request> requests = (List<Request>) service.findByApplicationId("ABC");
         assertEquals(4, requests.size());
-        assertEquals(model1, requests.get(0));
-        assertEquals(model2, requests.get(1));
-        assertEquals(model3, requests.get(2));
-        assertEquals(model4, requests.get(3));
+        assertEquals(model1.getApplicationId(), requests.get(0).getApplicationId());
+        assertEquals(model2.getApplicationId(), requests.get(1).getApplicationId());
+        assertEquals(model3.getApplicationId(), requests.get(2).getApplicationId());
+        assertEquals(model4.getApplicationId(), requests.get(3).getApplicationId());
     }
 
     @Test
@@ -95,10 +91,10 @@ public class JpaTraceRequestServiceTest {
         // Act
         List<Request> requests = (List<Request>) service.findByGroupId("ABC");
         assertEquals(4, requests.size());
-        assertEquals(model1, requests.get(0));
-        assertEquals(model2, requests.get(1));
-        assertEquals(model3, requests.get(2));
-        assertEquals(model4, requests.get(3));
+        assertEquals(model1.getGroupId(), requests.get(0).getGroupId());
+        assertEquals(model2.getGroupId(), requests.get(1).getGroupId());
+        assertEquals(model3.getGroupId(), requests.get(2).getGroupId());
+        assertEquals(model4.getGroupId(), requests.get(3).getGroupId());
     }
 
 }

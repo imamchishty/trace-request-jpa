@@ -1,20 +1,18 @@
 package com.shedhack.trace.request.jpa;
 
+import com.shedhack.trace.request.jpa.config.TraceRequestJpaConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 
 /**
  * Test Application
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.shedhack.trace.request.jpa.domain",
-        "com.shedhack.trace.request.jpa.service", "com.shedhack.trace.request.jpa.repository",
-        "com.shedhack.trace.request.jpa.controller"})
+@Import(TraceRequestJpaConfiguration.class)
 public class Application {
 
     public static void main(String... args) {
         SpringApplication.run(Application.class, args);
     }
-
 }

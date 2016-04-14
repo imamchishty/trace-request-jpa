@@ -1,8 +1,8 @@
 package com.shedhack.trace.request.jpa.config;
 
-import com.shedhack.trace.request.jpa.service.JpaTraceRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
@@ -35,6 +35,7 @@ import java.util.HashMap;
         entityManagerFactoryRef = "traceRequestEntityManager",
         transactionManagerRef = "traceRequestTxManager"
 )
+@ComponentScan(basePackages = "com.shedhack.trace.request.jpa.service")
 public class TraceRequestJpaConfiguration {
 
     @Autowired
@@ -64,7 +65,6 @@ public class TraceRequestJpaConfiguration {
         dataSource.setUrl(env.getProperty("trace-request.jdbc.url"));
         dataSource.setUsername(env.getProperty("trace-request.jdbc.user"));
         dataSource.setPassword(env.getProperty("trace-request.jdbc.pass"));
-
         return dataSource;
     }
 
@@ -74,10 +74,4 @@ public class TraceRequestJpaConfiguration {
         transactionManager.setEntityManagerFactory(traceRequestEntityManager().getObject());
         return transactionManager;
     }
-
-    @Bean
-    public JpaTraceRequestService jpaTraceRequestService() {
-        return new JpaTraceRequestService();
-    }
-
 }
