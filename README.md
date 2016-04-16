@@ -12,3 +12,17 @@ Stores the request model using jpa.
 Spring configuration
     
     @EnableTraceRequestJpa
+    
+    
+If you have an existing ds, mark it as @Primary, e.g.
+
+    @Primary
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/trace_request");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("postgres@123");
+        return dataSource;
+    }
