@@ -7,3 +7,8 @@ Stores the request model using jpa.
     trace-request.jdbc.url=jdbc:postgresql://localhost:5432/trace_request
     trace-request.jdbc.user=postgres
     trace-request.jdbc.pass=postgres@123
+    
+    
+Spring configuration
+    
+    @EnableTraceRequestJpa
