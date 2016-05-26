@@ -35,7 +35,7 @@ import java.util.HashMap;
         entityManagerFactoryRef = "traceRequestEntityManager",
         transactionManagerRef = "traceRequestTxManager"
 )
-@ComponentScan(basePackages = "com.shedhack.trace.request.jpa.service")
+@ComponentScan(basePackages = {"com.shedhack.trace.request.jpa.service", "com.shedhack.trace.request.jpa.interceptor"})
 public class TraceRequestJpaConfiguration {
 
     @Autowired
@@ -74,4 +74,5 @@ public class TraceRequestJpaConfiguration {
         transactionManager.setEntityManagerFactory(traceRequestEntityManager().getObject());
         return transactionManager;
     }
+
 }

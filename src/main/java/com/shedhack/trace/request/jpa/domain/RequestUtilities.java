@@ -1,7 +1,6 @@
 package com.shedhack.trace.request.jpa.domain;
 
 import com.shedhack.trace.request.api.model.RequestModel;
-import com.shedhack.trace.request.jpa.domain.Request;
 
 /**
  * Provides utilities for the JPA module.

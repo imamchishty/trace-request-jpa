@@ -1,14 +1,13 @@
 package com.shedhack.trace.request.jpa.domain;
 
 import com.shedhack.trace.request.api.constant.Status;
-import com.shedhack.trace.request.api.model.RequestDto;
+import com.shedhack.trace.request.api.model.DefaultRequestModel;
 import com.shedhack.trace.request.api.model.RequestModel;
 import org.junit.Test;
 
 import java.util.Date;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * Test the utilities
@@ -25,7 +24,7 @@ public class RequestUtilitiesTest {
 
     @Test
     public void should_identify_request_dto_object() {
-        RequestDto request = RequestDto.builder("app", "requestId", "groupId")
+        DefaultRequestModel request = DefaultRequestModel.builder("app", "requestId", "groupId")
                 .withRequestDateTime(new Date()).build();
 
         assertFalse(RequestUtilities.isRequestEntity(request));
@@ -46,7 +45,7 @@ public class RequestUtilitiesTest {
         String excId = "GHJKL";
 
         // Act
-        RequestDto.Builder builder = RequestDto.builder(appId, reqId, grpId);
+        DefaultRequestModel.Builder builder = DefaultRequestModel.builder(appId, reqId, grpId);
         builder.withRequestDateTime(new Date()).withCallerId(calId).withClientAddress(IPadd)
                 .withHostAddress(IPadd).withHttpHeaders(headers).withPath(path).withSessionId(sesId)
                 .withStatus(Status.FAILED).withResponseDateTime(new Date()).withExceptionId(excId);
